@@ -2,12 +2,11 @@
 
 Sistema de controle de estoque em linguagem C, executado no terminal, com cadastro de produtos e categorias e persistência em arquivos de texto.
 
-## Integrantes
+## Integrante
 
 | Nome | RGM |
 |------|-----|
-| [Nome do integrante 1] | [RGM] |
-| [Nome do integrante 2] | [RGM] |
+| [Melissa Chagas Lameiras] | [04896622-3] |
 
 ## Funcionalidades
 
