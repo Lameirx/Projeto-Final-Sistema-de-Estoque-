@@ -1,0 +1,8 @@
+# Arquivos gerados pela compilacao
+*.exe
+*.o
+*.out
+
+# Arquivos temporarios do Dev-C++ (o arquivo de projeto .dev deve ser mantido)
+*.layout
+Makefile.win
