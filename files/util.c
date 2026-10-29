@@ -233,3 +233,19 @@ char lerCaractere(const char *mensagem) {
     }
     return linha[i];
 }
+
+void limparTela(void) {
+#ifdef _WIN32
+    system("cls");
+#else
+    printf("\033[2J\033[H");
+    fflush(stdout);
+#endif
+}
+
+void pausar(void) {
+    char linha[TAM_LINHA];
+
+    printf("Pressione ENTER para continuar...");
+    lerLinha(linha, sizeof(linha));
+}
