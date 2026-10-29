@@ -18,6 +18,12 @@ int lerIntFaixa(const char *mensagem, int minimo, int maximo);     // minimo <= 
 float lerFloatPositivo(const char *mensagem);                      // > 0
 void lerTextoNaoVazio(const char *mensagem, char *destino, int tamanho);
 
+// Limpa a tela do terminal (usa "cls" no Windows e uma sequencia ANSI nos demais sistemas).
+void limparTela(void);
+
+// Mostra "Pressione ENTER..." e espera o usuario apertar ENTER (para ler o resultado antes de limpar a tela).
+void pausar(void);
+
 // Le exatamente UM caractere (ignora espacos nas pontas).
 // Retorna '\0' se a entrada estiver vazia ou tiver mais de um caractere.
 char lerCaractere(const char *mensagem);
