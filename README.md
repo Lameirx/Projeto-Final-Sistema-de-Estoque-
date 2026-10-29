@@ -1,31 +1,44 @@
-# Sistema de Estoque (Tarefa 4)
+# Sistema de Estoque
 
-Sistema de controle de estoque em linguagem C, executado no terminal, com cadastro de produtos e categorias e persistência em arquivos de texto.
+Sistema de controle de estoque em linguagem C, executado no terminal, com cadastro de produtos e categorias, movimentação de estoque, remoção lógica e persistência em arquivos de texto.
 
-## Integrante
+## Integrantes
 
 | Nome | RGM |
 |------|-----|
-| [Melissa Chagas Lameiras] | [04896622-3] |
+| Melissa Chagas Lameiras | 04896622-3 |
 
-## Funcionalidades
+## Menu
 
-- Cadastrar, listar e pesquisar produtos (por código ou por nome)
-- Cadastrar e listar categorias (até 20) e produtos (até 50)
-- O nome da categoria é exibido ao cadastrar, listar e pesquisar um produto
-- Código de produto e de categoria positivos e únicos
+```
+1 - Cadastrar Produto
+2 - Listar Produtos
+3 - Pesquisar Produto (por código ou por nome)
+4 - Alterar Estoque de um Produto
+5 - Remover Produto
+6 - Categorias (cadastrar, listar, voltar)
+7 - Sair
+```
+
+## Funcionalidades e regras
+
+- Produtos (até 50) e categorias (até 20), cada um com código positivo e único
 - Não é possível cadastrar produto sem categoria ou com categoria inexistente
-- Preço maior que zero; quantidade zero ou maior (disponibilidade calculada automaticamente)
+- O nome da categoria é exibido ao cadastrar, listar e pesquisar um produto
+- Preço maior que zero; quantidade zero ou maior; prateleira A, B, C ou D
+- **Disponibilidade sempre calculada** a partir da quantidade (nunca digitada)
+- **Alterar estoque:** entrada soma e saída subtrai, sem permitir estoque negativo
+- **Remover produto:** exclusão lógica (campo `ativo`). O produto removido não aparece em listagem nem em pesquisa, mas continua nos arquivos; seu código não pode ser reutilizado
 - Dados salvos em `categorias.txt` e `produtos.txt` e carregados ao iniciar o programa
 
 ## Estrutura
 
 | Arquivo | Responsabilidade |
 |---------|------------------|
-| `main.c` | Menus do sistema |
-| `produto.c` / `produto.h` | Gestão de produtos |
-| `categoria.c` / `categoria.h` | Gestão de categorias |
-| `util.c` / `util.h` | Leitura e validação de entradas |
+| `main.c` | Menus do sistema (sem regras de negócio) |
+| `produto.c` / `produto.h` | Regras e operações de produto (validação específica do domínio) |
+| `categoria.c` / `categoria.h` | Regras e operações de categoria |
+| `util.c` / `util.h` | Leitura e validação genérica de entradas |
 
 ## Como compilar e executar
 
