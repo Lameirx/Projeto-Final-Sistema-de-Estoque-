@@ -153,7 +153,21 @@ int lerIntNaoNegativo(const char *mensagem) {
         if (valor >= 0) {
             return valor;
         }
-        printf("Erro: A quantidade nao pode ser negativa!\n");
+        printf("Erro: O valor nao pode ser negativo!\n");
+    }
+}
+
+int lerIntFaixa(const char *mensagem, int minimo, int maximo) {
+    int valor;
+    while (1) {
+        if (!lerInteiro(mensagem, &valor)) {
+            printf("Erro: Entrada invalida! Digite um numero inteiro.\n");
+            continue;
+        }
+        if (valor >= minimo && valor <= maximo) {
+            return valor;
+        }
+        printf("Erro: Digite um valor entre %d e %d!\n", minimo, maximo);
     }
 }
 
@@ -169,7 +183,7 @@ float lerFloatPositivo(const char *mensagem) {
         if (valor > 0) {
             return valor;
         }
-        printf("Erro: O preco deve ser maior que zero!\n");
+        printf("Erro: O valor deve ser um numero maior que zero!\n");
     }
 }
 
@@ -195,31 +209,27 @@ void lerTextoNaoVazio(const char *mensagem, char *destino, int tamanho) {
     }
 }
 
-char lerPrateleira(const char *mensagem) {
+char lerCaractere(const char *mensagem) {
     char linha[TAM_LINHA];
-    char p;
-    int i;
+    int i = 0;
     int j;
 
-    while (1) {
-        printf("%s", mensagem);
-        if (lerLinha(linha, sizeof(linha))) {
-            i = 0;
-            while (isspace((unsigned char)linha[i])) {
-                i++;
-            }
-            j = i + 1;
-            if (linha[i] != '\0') {
-                while (isspace((unsigned char)linha[j])) {
-                    j++;
-                }
-                p = (char)toupper((unsigned char)linha[i]);
-                // precisa ser exatamente 1 caractere: A, B, C ou D
-                if (linha[j] == '\0' && (p == 'A' || p == 'B' || p == 'C' || p == 'D')) {
-                    return p;
-                }
-            }
-        }
-        printf("Erro: Prateleira invalida! Escolha apenas entre A, B, C ou D.\n");
+    printf("%s", mensagem);
+    if (!lerLinha(linha, sizeof(linha))) {
+        return '\0';
     }
+    while (isspace((unsigned char)linha[i])) {
+        i++;
+    }
+    if (linha[i] == '\0') {
+        return '\0'; // linha em branco
+    }
+    j = i + 1;
+    while (isspace((unsigned char)linha[j])) {
+        j++;
+    }
+    if (linha[j] != '\0') {
+        return '\0'; // mais de um caractere
+    }
+    return linha[i];
 }
