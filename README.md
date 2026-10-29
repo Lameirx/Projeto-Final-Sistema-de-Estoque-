@@ -29,6 +29,7 @@ Sistema de controle de estoque em linguagem C, executado no terminal, com cadast
 - **Disponibilidade sempre calculada** a partir da quantidade (nunca digitada)
 - **Alterar estoque:** entrada soma e saída subtrai, sem permitir estoque negativo
 - **Remover produto:** exclusão lógica (campo `ativo`). O produto removido não aparece em listagem nem em pesquisa, mas continua nos arquivos; seu código não pode ser reutilizado
+- Interface limpa: a cada opção escolhida a tela anterior é apagada e o resultado aparece sozinho; o programa espera ENTER antes de voltar ao menu
 - Dados salvos em `categorias.txt` e `produtos.txt` e carregados ao iniciar o programa
 
 ## Estrutura
