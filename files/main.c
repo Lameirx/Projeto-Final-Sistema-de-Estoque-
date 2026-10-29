@@ -56,8 +56,10 @@ int main(void) {
         printf("1 - Cadastrar Produto\n");
         printf("2 - Listar Produtos\n");
         printf("3 - Pesquisar Produto\n");
-        printf("4 - Categorias\n");
-        printf("5 - Sair\n");
+        printf("4 - Alterar Estoque de um Produto\n");
+        printf("5 - Remover Produto\n");
+        printf("6 - Categorias\n");
+        printf("7 - Sair\n");
 
         if (!lerInteiro("Escolha uma opcao: ", &opcao)) {
             printf("\nOpcao invalida! Digite apenas numeros.\n\n");
@@ -76,9 +78,17 @@ int main(void) {
                 pesquisarProduto(estoque, totalProdutos, categorias, totalCategorias);
                 break;
             case 4:
-                menuCategorias(categorias, &totalCategorias);
+                alterarEstoque(estoque, totalProdutos, categorias, totalCategorias);
+                salvarProdutos(estoque, totalProdutos, ARQ_PRODUTOS);
                 break;
             case 5:
+                removerProduto(estoque, totalProdutos);
+                salvarProdutos(estoque, totalProdutos, ARQ_PRODUTOS);
+                break;
+            case 6:
+                menuCategorias(categorias, &totalCategorias);
+                break;
+            case 7:
                 // Persistencia ao sair
                 salvarCategorias(categorias, totalCategorias, ARQ_CATEGORIAS);
                 salvarProdutos(estoque, totalProdutos, ARQ_PRODUTOS);
@@ -88,7 +98,7 @@ int main(void) {
                 printf("\nOpcao invalida! Tente novamente.\n\n");
                 break;
         }
-    } while (opcao != 5);
+    } while (opcao != 7);
 
     return 0;
 }
