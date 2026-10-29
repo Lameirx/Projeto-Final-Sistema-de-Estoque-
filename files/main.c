@@ -10,6 +10,7 @@ void menuCategorias(Categoria listaCat[], int *totalCat) {
     int opcaoCat = 0; // inicializada: o 'continue' abaixo testa a condicao do while
 
     do {
+        limparTela();
         printf("=== MENU DE CATEGORIAS ===\n");
         printf("1 - Cadastrar Categoria\n");
         printf("2 - Listar Categorias\n");
@@ -17,22 +18,27 @@ void menuCategorias(Categoria listaCat[], int *totalCat) {
 
         if (!lerInteiro("Escolha uma opcao: ", &opcaoCat)) {
             printf("\nOpcao invalida! Digite apenas numeros.\n\n");
+            pausar();
             continue;
         }
+
+        limparTela(); // a tela do menu some e a operacao escolhida aparece sozinha
 
         switch (opcaoCat) {
             case 1:
                 *totalCat = cadastrarCategoria(listaCat, *totalCat);
                 salvarCategorias(listaCat, *totalCat, ARQ_CATEGORIAS); // Salvamento imediato por seguranca
+                pausar();
                 break;
             case 2:
                 listarCategorias(listaCat, *totalCat);
+                pausar();
                 break;
             case 3:
-                printf("\nVoltando ao menu principal...\n\n");
-                break;
+                break; // volta ao menu principal
             default:
                 printf("\nOpcao invalida! Tente novamente.\n\n");
+                pausar();
                 break;
         }
     } while (opcaoCat != 3);
@@ -52,6 +58,7 @@ int main(void) {
     totalProdutos = carregarProdutos(estoque, ARQ_PRODUTOS);
 
     do {
+        limparTela();
         printf("=== SISTEMA DE ESTOQUE ===\n");
         printf("1 - Cadastrar Produto\n");
         printf("2 - Listar Produtos\n");
@@ -63,27 +70,35 @@ int main(void) {
 
         if (!lerInteiro("Escolha uma opcao: ", &opcao)) {
             printf("\nOpcao invalida! Digite apenas numeros.\n\n");
+            pausar();
             continue;
         }
+
+        limparTela(); // a tela do menu some e a operacao escolhida aparece sozinha
 
         switch (opcao) {
             case 1:
                 totalProdutos = cadastrarProduto(estoque, totalProdutos, categorias, totalCategorias);
                 salvarProdutos(estoque, totalProdutos, ARQ_PRODUTOS); // Salvamento imediato por seguranca
+                pausar();
                 break;
             case 2:
                 listarProdutos(estoque, totalProdutos, categorias, totalCategorias);
+                pausar();
                 break;
             case 3:
                 pesquisarProduto(estoque, totalProdutos, categorias, totalCategorias);
+                pausar();
                 break;
             case 4:
                 alterarEstoque(estoque, totalProdutos, categorias, totalCategorias);
                 salvarProdutos(estoque, totalProdutos, ARQ_PRODUTOS);
+                pausar();
                 break;
             case 5:
                 removerProduto(estoque, totalProdutos);
                 salvarProdutos(estoque, totalProdutos, ARQ_PRODUTOS);
+                pausar();
                 break;
             case 6:
                 menuCategorias(categorias, &totalCategorias);
@@ -96,6 +111,7 @@ int main(void) {
                 break;
             default:
                 printf("\nOpcao invalida! Tente novamente.\n\n");
+                pausar();
                 break;
         }
     } while (opcao != 7);
